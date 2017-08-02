@@ -35,6 +35,7 @@ import com.griefcraft.scripting.event.LWCProtectionRegisterEvent;
 import com.griefcraft.scripting.event.LWCReloadEvent;
 import com.griefcraft.util.Colors;
 import com.griefcraft.util.config.Configuration;
+import com.griefcraft.util.UUIDRegistry;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
@@ -135,7 +136,7 @@ public class LimitsV2 extends JavaModule {
 
         @Override
         public int getProtectionCount(Player player, Material material) {
-            return LWC.getInstance().getPhysicalDatabase().getProtectionCount(player.getName());
+            return LWC.getInstance().getPhysicalDatabase().getProtectionCount((UUIDRegistry.getUUID(player.getName())).toString());
         }
 
     }
@@ -154,7 +155,7 @@ public class LimitsV2 extends JavaModule {
 
         @Override
         public int getProtectionCount(Player player, Material material) {
-            return LWC.getInstance().getPhysicalDatabase().getProtectionCount(player.getName(), material.getId());
+            return LWC.getInstance().getPhysicalDatabase().getProtectionCount((UUIDRegistry.getUUID(player.getName())).toString(), material.getId());
         }
 
         /**
@@ -175,8 +176,8 @@ public class LimitsV2 extends JavaModule {
         @Override
         public int getProtectionCount(Player player, Material material) {
             LWC lwc = LWC.getInstance();
-            return lwc.getPhysicalDatabase().getProtectionCount(player.getName(), Material.SIGN_POST.getId())
-                    + lwc.getPhysicalDatabase().getProtectionCount(player.getName(), Material.WALL_SIGN.getId());
+            return lwc.getPhysicalDatabase().getProtectionCount((UUIDRegistry.getUUID(player.getName())).toString(), Material.SIGN_POST.getId())
+                    + lwc.getPhysicalDatabase().getProtectionCount((UUIDRegistry.getUUID(player.getName())).toString(), Material.WALL_SIGN.getId());
         }
 
     }

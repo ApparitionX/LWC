@@ -31,6 +31,7 @@ package com.griefcraft.modules.limits;
 import com.griefcraft.lwc.LWC;
 import com.griefcraft.scripting.JavaModule;
 import com.griefcraft.scripting.event.LWCProtectionRegisterEvent;
+import com.griefcraft.util.UUIDRegistry;
 import com.griefcraft.util.config.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Material;
@@ -139,11 +140,11 @@ public class LimitsModule extends JavaModule {
 
         switch (type) {
             case CUSTOM:
-                protections = lwc.getPhysicalDatabase().getProtectionCount(player.getName(), block.getTypeId());
+                protections = lwc.getPhysicalDatabase().getProtectionCount((UUIDRegistry.getUUID(player.getName())).toString(), block.getTypeId());
                 break;
 
             case DEFAULT:
-                protections = lwc.getPhysicalDatabase().getProtectionCount(player.getName());
+                protections = lwc.getPhysicalDatabase().getProtectionCount((UUIDRegistry.getUUID(player.getName())).toString());
                 break;
 
             default:

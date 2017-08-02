@@ -41,6 +41,7 @@ import com.griefcraft.scripting.event.LWCProtectionRegistrationPostEvent;
 import com.griefcraft.scripting.event.LWCProtectionRemovePostEvent;
 import com.griefcraft.util.Colors;
 import com.griefcraft.util.config.Configuration;
+import com.griefcraft.util.UUIDRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -53,6 +54,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import java.util.UUID;
 
 public class EconomyModule extends JavaModule {
 
@@ -396,7 +398,7 @@ public class EconomyModule extends JavaModule {
                             break;
 
                         case TOTAL:
-                            currentProtections = lwc.getPhysicalDatabase().getProtectionCount(player.getName());
+                            currentProtections = lwc.getPhysicalDatabase().getProtectionCount((UUIDRegistry.getUUID(player.getName())).toString());
                             break;
 
                         case IN_USE:
